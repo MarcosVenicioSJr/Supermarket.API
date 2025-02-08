@@ -1,5 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Supermarket.API.Context;
+using Supermarket.API.Entities;
+using Supermarket.API.Interfaces.Repository;
+using Supermarket.API.Interfaces.Services;
+using Supermarket.API.Repositories;
+using Supermarket.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +14,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IServices<Product>, ProductServices>();
+builder.Services.AddScoped<IRepository<Product>, ProductRepository>();
+builder.Services.AddScoped<SupermarketContext>();
 
 var connectionString = builder.Configuration.GetConnectionString("Supermarket");
 
