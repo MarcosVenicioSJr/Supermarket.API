@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Supermarket.API.Entities;
+using Supermarket.API.Entities.Request;
 using Supermarket.API.Interfaces.Services;
+using Supermarket.API.Mapper;
 
 namespace Supermarket.API.Controllers
 {
@@ -25,6 +27,14 @@ namespace Supermarket.API.Controllers
                 return NotFound();
 
             return Ok(entity);
+        }
+
+        [HttpPost]
+        public ActionResult<Product> Post([FromBody] CreateProduct model)
+        {
+            Product entity = ProductMapper.MapperCreateProductToProduct(model);
+            _services.Create(entity);
+            return Created();
         }
     }
 }

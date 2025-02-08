@@ -3,5 +3,6 @@
     public interface IServices<T> where T : class
     {
         T GetById(int id);
+        void Create(T entity);
     }
 }

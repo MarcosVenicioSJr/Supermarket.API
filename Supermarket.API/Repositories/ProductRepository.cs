@@ -11,7 +11,13 @@ namespace Supermarket.API.Repositories
 
         public ProductRepository(SupermarketContext context)
         {
-            this._context = context;
+            _context = context;
+        }
+
+        public async void Create(Product entity)
+        {
+            await _context.Products.AddAsync(entity);
+            _context.SaveChanges();
         }
 
         public async Task<Product> GetById(int id) =>
