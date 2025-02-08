@@ -5,7 +5,7 @@ namespace Supermarket.API.Context
 {
     public class SupermarketContext : DbContext
     {
-        public DbSet<Product> Contacts { get; set; }
+        public DbSet<Product> Products { get; set; }
 
         public SupermarketContext(DbContextOptions<SupermarketContext> options) : base(options)
         {

@@ -1,4 +1,5 @@
-﻿using Supermarket.API.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using Supermarket.API.Context;
 using Supermarket.API.Entities;
 using Supermarket.API.Interfaces.Repository;
 
@@ -13,9 +14,7 @@ namespace Supermarket.API.Repositories
             this._context = context;
         }
 
-        public Task<Product> GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<Product> GetById(int id) =>
+            await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
     }
 }

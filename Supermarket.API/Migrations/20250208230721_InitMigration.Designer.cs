@@ -11,7 +11,7 @@ using Supermarket.API.Context;
 namespace Supermarket.API.Migrations
 {
     [DbContext(typeof(SupermarketContext))]
-    [Migration("20250208224545_InitMigration")]
+    [Migration("20250208230721_InitMigration")]
     partial class InitMigration
     {
         /// <inheritdoc />

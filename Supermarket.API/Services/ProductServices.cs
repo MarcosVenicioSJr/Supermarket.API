@@ -12,9 +12,7 @@ namespace Supermarket.API.Services
             _repository = repository;
         }
 
-        public Product GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public Product GetById(int id) 
+            => _repository.GetById(id).Result;
     }
 }
