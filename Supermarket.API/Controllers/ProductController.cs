@@ -10,10 +10,12 @@ namespace Supermarket.API.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
+        private readonly ILogger<ProductController> _logger;
         private readonly IServices<Product> _services;
-        public ProductController(IServices<Product> services)
+        public ProductController(IServices<Product> services, ILogger<ProductController> logger)
         {
             _services = services;
+            _logger = logger;
         }
 
         [HttpGet]
