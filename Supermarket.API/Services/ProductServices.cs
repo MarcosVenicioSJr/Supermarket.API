@@ -22,6 +22,11 @@ namespace Supermarket.API.Services
             _repository.Create(entity);
         }
 
+        public void Delete(int id)
+        {
+            _repository.Delete(id);
+        }
+
         public Product GetById(int id) 
             => _repository.GetById(id).Result;
 

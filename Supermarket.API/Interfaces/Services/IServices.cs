@@ -4,5 +4,6 @@
     {
         T GetById(int id);
         void Create(T entity);
+        void Delete(int id);
     }
 }

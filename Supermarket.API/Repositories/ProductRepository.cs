@@ -26,6 +26,16 @@ namespace Supermarket.API.Repositories
             _cacheServices.Create(entity);
         }
 
+        public void Delete(int id)
+        {
+            Product product = GetById(id).Result;
+
+            if (product is null)
+                return;
+
+            _context.Products.Remove(product);
+        }
+
         public async Task<Product> GetById(int id)
         {
             Product product = _cacheServices.Get().Result;

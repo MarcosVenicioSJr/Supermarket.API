@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Distributed;
 using Supermarket.API.Entities;
 using Supermarket.API.Entities.Request;
 using Supermarket.API.Interfaces.Services;
@@ -12,7 +11,7 @@ namespace Supermarket.API.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IServices<Product> _services;
-        public ProductController(IServices<Product> services, IDistributedCache distributedCache)
+        public ProductController(IServices<Product> services)
         {
             _services = services;
         }
@@ -35,6 +34,13 @@ namespace Supermarket.API.Controllers
             Product entity = ProductMapper.MapperCreateProductToProduct(model);
             _services.Create(entity);
             return Created();
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public ActionResult Delete(int id)
+        {
+            return Accepted();
         }
     }
 }
