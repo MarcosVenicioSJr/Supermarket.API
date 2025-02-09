@@ -1,10 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using Supermarket.API.Context;
 using Supermarket.API.Entities;
+using Supermarket.API.Interfaces;
 using Supermarket.API.Interfaces.Repository;
 using Supermarket.API.Interfaces.Services;
 using Supermarket.API.Repositories;
 using Supermarket.API.Services;
+using Supermarket.API.Services.Cache;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +18,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IServices<Product>, ProductServices>();
 builder.Services.AddScoped<IRepository<Product>, ProductRepository>();
+builder.Services.AddScoped<ICacheServices<Product>, CacheProduct>();
 builder.Services.AddScoped<SupermarketContext>();
+
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = "localhost:6379";
+});
 
 var connectionString = builder.Configuration.GetConnectionString("Supermarket");
 

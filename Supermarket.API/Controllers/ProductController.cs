@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Distributed;
 using Supermarket.API.Entities;
 using Supermarket.API.Entities.Request;
 using Supermarket.API.Interfaces.Services;
@@ -11,8 +12,7 @@ namespace Supermarket.API.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IServices<Product> _services;
-
-        public ProductController(IServices<Product> services)
+        public ProductController(IServices<Product> services, IDistributedCache distributedCache)
         {
             _services = services;
         }
