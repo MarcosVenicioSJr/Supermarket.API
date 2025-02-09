@@ -40,6 +40,7 @@ namespace Supermarket.API.Controllers
         [Route("{id}")]
         public ActionResult Delete(int id)
         {
+            _services.Delete(id);
             return Accepted();
         }
     }
